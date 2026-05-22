@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Заказ оформлен</h1>
+    <p>Спасибо за покупку! Ваш заказ был отправлен.</p>
+    <a href="{% url 'doll_list' %}" class="btn btn-purple">Вернуться к куклам</a>
+</div>
+{% endblock %}

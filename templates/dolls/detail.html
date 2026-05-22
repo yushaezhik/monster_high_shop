@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    {% if doll %}
+    <div class="row align-items-start g-4">
+        <div class="col-md-5">
+            <div class="card">
+                <img src="{% static doll.image %}" class="card-img-top doll-detail-img" alt="{{ doll.name }}">
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h1 class="mb-3">{{ doll.name }}</h1>
+            <p class="lead">{{ doll.description }}</p>
+            <p><strong>Год релиза:</strong> {{ doll.year }}</p>
+            <p><strong>Цена:</strong> {{ doll.price }} ₽</p>
+
+<div class="d-flex gap-2 mt-3">
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_to_cart' doll.slug %}" class="m-0">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-purple">Добавить в корзину</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-purple">Войти, чтобы добавить в корзину</a>
+    {% endif %}
+
+    <a href="{% url 'doll_list' %}" class="btn btn-outline-secondary">Назад</a>
+</div>
+
+    </div>
+    {% else %}
+    <div class="alert alert-danger">Кукла не найдена.</div>
+    {% endif %}
+</div>
+{% endblock %}

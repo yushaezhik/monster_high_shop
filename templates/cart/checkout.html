@@ -1,0 +1,26 @@
+@login_required
+@require_POST
+def checkout(request):
+    cart = request.session.get('cart', {})
+
+    if not cart:
+        return render(request, 'cart/checkout_done.html')
+
+    order = Order.objects.create(
+        user=request.user,
+        completed=True
+    )
+
+    for slug, qty in cart.items():
+        doll = DOLLS.get(slug)
+        if doll:
+            OrderItem.objects.create(
+                order=order,
+                doll_name=doll['name'],
+                price=doll['price'],
+                quantity=qty
+            )
+
+    request.session['cart'] = {}
+    request.session.modified = True
+    return render(request, 'cart/checkout_done.html')

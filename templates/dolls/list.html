@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Куклы Monster High</h1>
+
+    <div class="row justify-content-center g-4">
+        {% for doll in dolls %}
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 doll-card">
+                <img src="{% static doll.image %}" class="card-img-top doll-img" alt="{{ doll.name }}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ doll.name }}</h5>
+                    <p class="card-text">{{ doll.description }}</p>
+                    <a href="{% url 'doll_detail' doll.slug %}" class="btn btn-purple mt-auto">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

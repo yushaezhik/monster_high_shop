@@ -1,0 +1,12 @@
+venv\Scripts\activate
+python manage.py runserver
+https://monsterhigh.fandom.com/wiki/Draculaura_(G1)/merchandise#Basic
+
+
+
+ГЛАВНАЯ СТРАНИЦА
+добавить баннер и информацию на главную страницу
+сделать правую боковую панель с изображением
+
+КУКЛЫ
+-добавить еще кукол
